@@ -164,7 +164,6 @@ void SListInsert(SLNode** pphead, SLNode* pos, SLDataType x)
 	}
 }
 
-
 // 在pos之后进行插入
 void SListInsertAfter(SLNode* pos, SLDataType x)
 {
