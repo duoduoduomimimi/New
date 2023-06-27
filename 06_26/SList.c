@@ -29,6 +29,7 @@ SLNode* CreateSListNode(SLDataType* x)
 // 因为函数的形参只是实参的一份临时拷贝，与实参没有直接联系，只是模拟实参的效果，形参的改变对实参没有直接的影响
 void SListPushBack(SLNode** pphead, SLDataType x)
 {
+	assert(pphead);
 	// 允许空链表传入
 	SLNode* cur = *pphead;
 	SLNode* newnode = CreateSListNode(x);
@@ -53,6 +54,7 @@ void SListPushBack(SLNode** pphead, SLDataType x)
 // 头插  使用二级指针，与外部的phead建立直接的联系，头插完成之后，phead要指向新的头节点
 void SListPushFront(SLNode** pphead, SLDataType x)
 {
+	assert(pphead);
 	// 允许空链表传入
 	/*assert(*pphead);*/
 	SLNode* cur = *pphead;
@@ -65,6 +67,7 @@ void SListPushFront(SLNode** pphead, SLDataType x)
 // 尾删
 void SListPopBack(SLNode** pphead)
 {
+	assert(pphead);
 	// 链表本就为空，就不能再进行删除了
 	assert(*pphead);
 
@@ -89,10 +92,10 @@ void SListPopBack(SLNode** pphead)
 	
 }
 
-
 // 头删
 void SListPopFront(SLNode** pphead)
 {
+	assert(pphead);
 	// 链表本就为空，就不能再进行删除了
 	assert(*pphead);
 	SLNode* next = (*pphead)->next;
@@ -103,6 +106,7 @@ void SListPopFront(SLNode** pphead)
 // 查找
 SLNode* SListFind(SLNode* phead, SLDataType x)
 {
+	
 	// 空链表无法进行查找
 	assert(phead);
 	SLNode* cur = phead;
@@ -137,6 +141,9 @@ void SListModify(SLNode* phead, SLDataType x, SLDataType y)
 // 在pos节点之前插入
 void SListInsert(SLNode** pphead, SLNode* pos, SLDataType x)
 {
+	// 以防恶意插入
+	assert(pos);
+	assert(pphead);
 	// 空链表也可以传入
 	SLNode* newnode = CreateSListNode(x);
 	if (*pphead == NULL)
@@ -161,6 +168,8 @@ void SListInsert(SLNode** pphead, SLNode* pos, SLDataType x)
 // 在pos之后进行插入
 void SListInsertAfter(SLNode* pos, SLDataType x)
 {
+	// 以防恶意插入
+	assert(pos);
 	// 空链表无法进行查找，已在SListFind内进行断言，保证了pos的有效性
 	SLNode* newnode = CreateSListNode(x);
 	
@@ -171,6 +180,7 @@ void SListInsertAfter(SLNode* pos, SLDataType x)
 // 删除指定位置的节点
 void SListErase(SLNode** pphead, SLNode* pos)
 {
+	assert(pphead);
 	// 空链表无法进行删除，已在SListFind内进行断言，保证了*phead和pos的有效性
 	// 找到pos的前一个节点
 	if ((*pphead)->next == NULL)  // 只有一个节点时
