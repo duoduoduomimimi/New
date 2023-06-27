@@ -179,6 +179,8 @@ void SListInsertAfter(SLNode* pos, SLDataType x)
 // 删除指定位置的节点
 void SListErase(SLNode** pphead, SLNode* pos)
 {
+	// 以防恶意删除
+	assert(pos);
 	assert(pphead);
 	// 空链表无法进行删除，已在SListFind内进行断言，保证了*phead和pos的有效性
 	// 找到pos的前一个节点
@@ -207,6 +209,8 @@ void SListErase(SLNode** pphead, SLNode* pos)
 // 在指定位置之后删除
 void SListEraseAfter(SLNode* pos)
 {
+	// 以防恶意删除
+	assert(pos);
 	// 空链表无法进行删除，已在SListFind内进行断言，pos的有效性
 	if (pos->next == NULL)  // pos已为尾节点
 	{
